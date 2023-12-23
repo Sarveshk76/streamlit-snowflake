@@ -45,16 +45,13 @@ submit = tab1.button("submitbutton",type="primary")
 #     con.query(f"INSERT INTO APPTBL(MaterialCode ,ProjectCategory,SubCategory, ProjectDescription ,AdditionalComment ,NewPriceRequestedBySupplier) values ({materialcode},{projectcategory},{subcategory},{projectdescription},{comment},{NewPriceRequestedbysupplier_basisforcostavoidance})")
 # df = con.query("select * from APPTBL", ttl=60)
 # tab2.table(df)
-df = pd.DataFrame({})
 df = con.query("SELECT * from TEST1DB.PUBLIC.APPTBL", ttl=60)
 
 if submit:
     with con.cursor() as cur:
         cur.execute("INSERT INTO APPTBL(MaterialCode ,ProjectCategory, SubCategory, ProjectDescription ,AdditionalComment ,NewPriceRequestedBySupplier) values"+f"({materialcode},'{projectcategory}','{subcategory}','{projectdescription}','{comment}',{NewPriceRequestedbysupplier_basisforcostavoidance})")
         df = con.query("SELECT * from TEST1DB.PUBLIC.APPTBL", ttl=60)
-# Fetch the data from the database table
-#con = st.connection("snowflake")        
-
+     
 tab2.table(df)
 
 # if submit:
